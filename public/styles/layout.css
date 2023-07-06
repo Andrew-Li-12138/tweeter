@@ -8,6 +8,7 @@ html {
 }
 *, *:before, *:after {
   box-sizing: inherit;
+  font-family: 'Source Sans 3', sans-serif;
 }
 
 /*
@@ -19,6 +20,8 @@ body {
   background-color: #f4f1ec;
   font-size: 24px;
 }
+
+
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
