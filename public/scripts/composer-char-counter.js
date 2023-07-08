@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $("#tweet-text").on('keypress', function() {
+  $("#tweet-text").on('input', function() {
     //wrap 'this' wit JQuery so text can have the text value of client's input in textarea
     const text = $(this).val();
     //calculate remaining count
