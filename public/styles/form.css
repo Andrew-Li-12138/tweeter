@@ -1,0 +1,49 @@
+body main form {
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.enter-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 5px solid black;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+
+}
+
+.enter-text textarea {
+  padding:0;
+  margin-bottom:5px;
+  height: 50px;
+  width: 70%;
+  border-color:antiquewhite;
+  background-color:floralwhite;
+  border-width: 3px;
+}
+
+.click-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.click-button button {
+  line-height: 1.5;
+  margin: 10px;
+  background-color: #4056A1;
+  color: #FFFFFF;
+  border-width: 0px;
+  padding: 1px 10px 1px 10px;
+  font-family: 'Bungee', cursive;
+  font-size: 100%;
+}
+
+.counter {
+  font-family: 'Bungee', cursive;
+  font-size: 130%;
+}
+
