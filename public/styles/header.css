@@ -1,4 +1,4 @@
-body header {
+header.thumbnail {
   height: 520px;
   width: 100%;
   background-color: #d7eafa;
@@ -10,7 +10,7 @@ body header {
   padding-top: 120px;
 }
 
-body header div:last-child h2 {
+header.thumbnail div:last-child h2 {
   margin-top: 0;
   color: white;
 }
