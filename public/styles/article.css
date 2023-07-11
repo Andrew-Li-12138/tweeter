@@ -1,0 +1,59 @@
+article.tweet-container {
+  border: 3px solid black;
+  margin-top: 35px;
+}
+
+article.tweet-container header.tweet-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 30px;
+}
+
+article.tweet-container header.tweet-header div.avatar-name {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+article.tweet-container header.tweet-header div.avatar-name div:nth-child(2){
+  margin-left: 15px;
+
+}
+
+article.tweet-container header.tweet-header div.username {
+  color: lightgray;
+  font-weight: bold;
+}
+
+article.tweet-container textarea.tweet-text {
+  border: none;
+  border-bottom: 3px solid black;
+  width: 98%;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color:#f4f1ec;;
+}
+
+article.tweet-container footer.tweet-footer {
+  display:flex;
+  justify-content:space-between;
+  margin: 5px 10px 10px 10px;
+  font-size: small;
+  font-weight: bold;
+}
+
+article.tweet-container footer.tweet-footer div.tweet-icons {
+  display: flex;
+  width: 10%;
+  justify-content: space-evenly;
+}
+
+article.tweet-container footer.tweet-footer div.tweet-icons div:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+article.tweet-container footer.tweet-footer div.tweet-icons svg:hover path {
+  fill: yellowgreen;
+}
