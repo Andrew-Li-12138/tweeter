@@ -6,6 +6,7 @@ body main form {
 
 .enter-text {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: baseline;
   border-bottom: 5px solid black;
@@ -19,10 +20,9 @@ body main form {
   padding:0;
   margin-bottom:5px;
   height: 50px;
-  width: 70%;
-  border-color:antiquewhite;
-  background-color:floralwhite;
-  border-width: 3px;
+  width: 100%;
+  border: none;
+  background-color: #f4f1ec;
 }
 
 .click-button {
