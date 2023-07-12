@@ -27,12 +27,13 @@ article.tweet-container header.tweet-header div.username {
   font-weight: bold;
 }
 
-article.tweet-container textarea.tweet-text {
+article.tweet-container p.tweet-text {
   border: none;
   border-bottom: 3px solid black;
   width: 98%;
   margin-left: 10px;
   margin-right: 10px;
+  padding-bottom: 10px;
   background-color:#f4f1ec;;
 }
 
