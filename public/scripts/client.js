@@ -47,6 +47,15 @@ const renderTweets = function(tweets) {
   }
 }
 
+//render new tweets upon get request
+const fetchTweets = function(){
+  $.get('/tweets/')
+  .then((res) => {
+    renderTweets(res)
+  })
+  .catch(err => console.log(err))
+}
+
 //Use the jQuery library to add an event listener for submit.
 $('#enter-tweets').on('submit', function(event){
 //Inside the handler function, use event.preventDefault() to prevent the default form submission behaviour.
@@ -68,20 +77,19 @@ $('#enter-tweets').on('submit', function(event){
   //Use the jQuery library to submit a POST request that sends the serialized data to the server
   $.post('/tweets/', serializeText)
   //Verify the AJAX request
-  .then(console.log('tweet sent'))
-  .catch(err => console.log(err))
-})
-
-
-//render new tweets upon get request
-  $.get('/tweets/')
-  .then((res) => {
-    renderTweets(res)
+  .then(() => {console.log('tweet sent to server')})
+  //call fetchTweets asynchronously which handles a get request and prepends tweets 
+  .then(() => {
+    fetchTweets()
   })
   .catch(err => console.log(err))
+}) 
+  
+  //call fetchTweets again for showing all results when manually refreshing at browser after $.post event 
+  fetchTweets()
   
 })
-
+ 
 
 
 
