@@ -5,34 +5,9 @@
  */
 
 $(document).ready(function() {
-// Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
-
 //take data and incorporate it with HTML 
 const createTweetElement = function(tweet) {
+  
   let $newTweet = $(
   `<article class="tweet-container">
   <header class="tweet-header">
@@ -44,7 +19,7 @@ const createTweetElement = function(tweet) {
   </header>
   <p class="tweet-text">${tweet.content.text}</p>
   <footer class="tweet-footer">
-    <div>${tweet.created_at}</div>
+    <div>${timeago.format(tweet.created_at)}</div>
     <div class="tweet-icons"><!--icons-- had to use svg as <i></i> from Font Awsome did not show up properly-->
     <div>
       <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><style>svg{fill:#273b77}</style><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
@@ -72,24 +47,39 @@ const renderTweets = function(tweets) {
   }
 }
 
-renderTweets(data);
-
-
-
 //Use the jQuery library to add an event listener for submit.
 $('#enter-tweets').on('submit', function(event){
 //Inside the handler function, use event.preventDefault() to prevent the default form submission behaviour.
   event.preventDefault();
   //Serialize the form data
-  const tweetText =  $('#enter-tweets').serialize();
-  console.log(tweetText)
+  const serializeText =  $('#enter-tweets').serialize();
+
+  //disallow form submission in the event that the tweet area is empty, or exceeds the 140 character limit
+  if (serializeText.length <= 5) {
+    alert("Tweet cannot be empty")
+    return
+  }
+
+  if (serializeText.length > 145) {
+    alert("Tweet has exceeded max length")
+    return
+  }
+  
   //Use the jQuery library to submit a POST request that sends the serialized data to the server
-  $.post('/tweets/', tweetText)
+  $.post('/tweets/', serializeText)
   //Verify the AJAX request
-  .then(res => console.log(res))
+  .then(console.log('tweet sent'))
   .catch(err => console.log(err))
 })
 
+
+//render new tweets upon get request
+  $.get('/tweets/')
+  .then((res) => {
+    renderTweets(res)
+  })
+  .catch(err => console.log(err))
+  
 })
 
 
