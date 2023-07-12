@@ -74,7 +74,25 @@ const renderTweets = function(tweets) {
 
 renderTweets(data);
 
+
+
+//Use the jQuery library to add an event listener for submit.
+$('#enter-tweets').on('submit', function(event){
+//Inside the handler function, use event.preventDefault() to prevent the default form submission behaviour.
+  event.preventDefault();
+  //Serialize the form data
+  const tweetText =  $('#enter-tweets').serialize();
+  console.log(tweetText)
+  //Use the jQuery library to submit a POST request that sends the serialized data to the server
+  $.post('/tweets/', tweetText)
+  //Verify the AJAX request
+  .then(res => console.log(res))
+  .catch(err => console.log(err))
 })
+
+})
+
+
 
 
 
