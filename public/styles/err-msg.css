@@ -1,0 +1,7 @@
+
+div.err-msg p {
+  border:3px solid red;
+  padding: 10px 0 10px 20px;
+  color:red;
+  display: none;
+}
