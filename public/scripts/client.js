@@ -79,7 +79,7 @@ $('#enter-tweets').on('submit', function(event){
   }
 
   if (serializeText.length > 145) {
-    $('div.err-msg p:last-child').text('⛔️ Tweet has exceeds max character (140) limit ')
+    $('div.err-msg p:last-child').text('⛔️ Tweet has exceeded max character (140) limit ')
     $('div.err-msg p:last-child').slideDown(500, 'linear')
     return
   }
