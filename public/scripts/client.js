@@ -5,9 +5,16 @@
  */
 
 $(document).ready(function() {
+  
+  //preventing XSS with Escaping
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
 //take data and incorporate it with HTML 
 const createTweetElement = function(tweet) {
-  
   let $newTweet = $(
   `<article class="tweet-container">
   <header class="tweet-header">
@@ -17,7 +24,7 @@ const createTweetElement = function(tweet) {
     </div>
     <div class="username">${tweet.user.handle}</div>
   </header>
-  <p class="tweet-text">${tweet.content.text}</p>
+  <p class="tweet-text">${escape(tweet.content.text)}</p>
   <footer class="tweet-footer">
     <div>${timeago.format(tweet.created_at)}</div>
     <div class="tweet-icons"><!--icons-- had to use svg as <i></i> from Font Awsome did not show up properly-->
@@ -65,13 +72,21 @@ $('#enter-tweets').on('submit', function(event){
 
   //disallow form submission in the event that the tweet area is empty, or exceeds the 140 character limit
   if (serializeText.length <= 5) {
-    alert("Tweet cannot be empty")
+    $('div.err-msg p:first-child').text('⛔️ Tweet cannot be empty')
+    //apply slidedown animation to p tag and overides display:none to show the error message
+    $('div.err-msg p:first-child').slideDown(500, 'linear')
     return
   }
 
   if (serializeText.length > 145) {
-    alert("Tweet has exceeded max length")
+    $('div.err-msg p:last-child').text('⛔️ Tweet has exceeds max character (140) limit ')
+    $('div.err-msg p:last-child').slideDown(500, 'linear')
     return
+  }
+  
+  //slide error message up to hide it when text is not empty and less than 140 
+  if (serializeText.length <= 145 && serializeText.length > 5 ) {
+    $('div.err-msg p').slideUp(500, 'linear')
   }
   
   //Use the jQuery library to submit a POST request that sends the serialized data to the server
