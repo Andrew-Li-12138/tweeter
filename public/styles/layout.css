@@ -23,7 +23,8 @@ body {
 
 body main {
   width: 90%;
-  background-color: #f4f1ec;;
+  background-color: #f4f1ec;
+  padding-left:50px;
 }
 
 /*
