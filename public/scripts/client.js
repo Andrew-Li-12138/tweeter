@@ -1,22 +1,17 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
 
 $(document).ready(function() {
   
   //preventing XSS with Escaping
-  const escape = function (str) {
+  const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
-//take data and incorporate it with HTML 
-const createTweetElement = function(tweet) {
-  let $newTweet = $(
-  `<article class="tweet-container">
+  //take data and incorporate it with HTML
+  const createTweetElement = function(tweet) {
+    let $newTweet = $(
+      `<article class="tweet-container">
   <header class="tweet-header">
     <div class="avatar-name"> 
       <div><img src=${tweet.user.avatars} alt = "profile picture" /></div>
@@ -39,71 +34,73 @@ const createTweetElement = function(tweet) {
     </div>
     </div>
   </footer>
-</article>`)
-return $newTweet
-}
+</article>`);
+    return $newTweet;
+  };
 
 
-const renderTweets = function(tweets) {
+  const renderTweets = function(tweets) {
   // loops through tweets
-  for (const tweet of tweets) {
-   // calls createTweetElement for each tweet
-   const $eachTweet = createTweetElement(tweet);
-    // takes return value and appends it to the tweets container
-   $('#tweets-container').prepend($eachTweet); 
-  }
-}
+    for (const tweet of tweets) {
+      // calls createTweetElement for each tweet
+      const $eachTweet = createTweetElement(tweet);
+      // takes return value and appends it to the tweets container
+      $('#tweets-container').prepend($eachTweet);
+    }
+  };
 
-//render new tweets upon get request
-const fetchTweets = function(){
-  $.get('/tweets/')
-  .then((res) => {
-    renderTweets(res)
-  })
-  .catch(err => console.log(err))
-}
+  //render new tweets upon get request
+  const fetchTweets = function() {
+    $.get('/tweets/')
+      .then((res) => {
+        renderTweets(res);
+      })
+      .catch(err => console.log(err));
+  };
 
-//Use the jQuery library to add an event listener for submit.
-$('#enter-tweets').on('submit', function(event){
-//Inside the handler function, use event.preventDefault() to prevent the default form submission behaviour.
-  event.preventDefault();
-  //Serialize the form data
-  const serializeText =  $('#enter-tweets').serialize();
+  //Use the jQuery library to add an event listener for submit.
+  $('#enter-tweets').on('submit', function(event) {
+    //Inside the handler function, use event.preventDefault() to prevent the default form submission behaviour.
+    event.preventDefault();
+    //Serialize the form data
+    const serializeText =  $('#enter-tweets').serialize();
 
-  //disallow form submission in the event that the tweet area is empty, or exceeds the 140 character limit
-  if (serializeText.length <= 5) {
-    $('div.err-msg p:first-child').text('⛔️ Tweet cannot be empty')
-    //apply slidedown animation to p tag and overides display:none to show the error message
-    $('div.err-msg p:first-child').slideDown(500, 'linear')
-    return
-  }
+    //disallow form submission in the event that the tweet area is empty, or exceeds the 140 character limit
+    if (serializeText.length <= 5) {
+      $('div.err-msg p:first-child').text('⛔️ Tweet cannot be empty');
+      //apply slidedown animation to p tag and overides display:none to show the error message
+      $('div.err-msg p:first-child').slideDown(500, 'linear');
+      return;
+    }
 
-  if (serializeText.length > 145) {
-    $('div.err-msg p:last-child').text('⛔️ Tweet has exceeded max character (140) limit ')
-    $('div.err-msg p:last-child').slideDown(500, 'linear')
-    return
-  }
+    if (serializeText.length > 145) {
+      $('div.err-msg p:last-child').text('⛔️ Tweet has exceeded max character (140) limit ');
+      $('div.err-msg p:last-child').slideDown(500, 'linear');
+      return;
+    }
   
-  //slide error message up to hide it when text is not empty and less than 140 
-  if (serializeText.length <= 145 && serializeText.length > 5 ) {
-    $('div.err-msg p').slideUp(500, 'linear')
-  }
+    //slide error message up to hide it when text is not empty and less than 140
+    if (serializeText.length <= 145 && serializeText.length > 5) {
+      $('div.err-msg p').slideUp(500, 'linear');
+    }
   
-  //Use the jQuery library to submit a POST request that sends the serialized data to the server
-  $.post('/tweets/', serializeText)
-  //Verify the AJAX request
-  .then(() => {console.log('tweet sent to server')})
-  //call fetchTweets asynchronously which handles a get request and prepends tweets 
-  .then(() => {
-    fetchTweets()
-  })
-  .catch(err => console.log(err))
-}) 
+    //Use the jQuery library to submit a POST request that sends the serialized data to the server
+    $.post('/tweets/', serializeText)
+    //Verify the AJAX request
+      .then(() => {
+        console.log('tweet sent to server');
+      })
+    //call fetchTweets asynchronously which handles a get request and prepends tweets
+      .then(() => {
+        fetchTweets();
+      })
+      .catch(err => console.log(err));
+  });
   
-  //call fetchTweets again for showing all results when manually refreshing at browser after $.post event 
-  fetchTweets()
+  //call fetchTweets again for showing all results when manually refreshing at browser after $.post event
+  fetchTweets();
   
-})
+});
  
 
 
