@@ -34,7 +34,9 @@ article.tweet-container p.tweet-text {
   margin-left: 10px;
   margin-right: 10px;
   padding-bottom: 10px;
-  background-color:#f4f1ec;;
+  background-color:#f4f1ec;
+  word-wrap: break-word;
+  max-width: 520px;
 }
 
 article.tweet-container footer.tweet-footer {
