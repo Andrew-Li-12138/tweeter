@@ -48,7 +48,7 @@ $(document).ready(function() {
       $('#tweets-container').prepend($eachTweet);
     }
   };
-
+   
   //render new tweets upon get request
   const fetchTweets = function() {
     $.get('/tweets/')
@@ -62,6 +62,7 @@ $(document).ready(function() {
   $('#enter-tweets').on('submit', function(event) {
     //Inside the handler function, use event.preventDefault() to prevent the default form submission behaviour.
     event.preventDefault();
+
     //Serialize the form data
     const serializeText =  $('#enter-tweets').serialize();
 
@@ -83,7 +84,9 @@ $(document).ready(function() {
     if (serializeText.length <= 145 && serializeText.length > 5) {
       $('div.err-msg p').slideUp(500, 'linear');
     }
-  
+    
+    //clear out text in textarea before fetchTweets 
+    $('#tweet-text').val('');
     //Use the jQuery library to submit a POST request that sends the serialized data to the server
     $.post('/tweets/', serializeText)
     //Verify the AJAX request
