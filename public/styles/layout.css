@@ -28,7 +28,7 @@ body main {
 }
 
 /*
-CSS of when screen width is less than 768px (tablets)
+CSS of when screen width is less than 1024px (tablets and other smaller mobile devices)
 */
 @media only screen and (min-width: 1024px){
 body div.header-main {
