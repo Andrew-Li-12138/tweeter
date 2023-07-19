@@ -31,12 +31,13 @@ article.tweet-container p.tweet-text {
   border: none;
   border-bottom: 3px solid black;
   width: 98%;
+  max-width: 700px;
   margin-left: 10px;
   margin-right: 10px;
   padding-bottom: 10px;
   background-color:#f4f1ec;
   word-wrap: break-word;
-  max-width: 520px;
+  
 }
 
 article.tweet-container footer.tweet-footer {

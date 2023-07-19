@@ -18,7 +18,7 @@ body {
   font-size: 24px; 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width:100%;
 }
 
 body main {
@@ -30,16 +30,16 @@ body main {
 /*
 CSS of when screen width is less than 768px (tablets)
 */
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 1024px){
 body div.header-main {
-  width: 100vw;
+  width: 100%;
   display:flex;
   justify-content: space-around;
   padding-top:120px;
 }
 
 body header.thumbnail {
- margin: 100px 150px 0 30px;
+ margin: 100px 30px 0 30px;
 }
 
 body main {
