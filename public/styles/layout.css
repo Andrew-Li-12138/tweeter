@@ -1,8 +1,7 @@
 /*
- * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
- * https://css-tricks.com/international-box-sizing-awareness-day/
- * Do not modify these two selectors, please
+ * Global layout stuff
  */
+
 html {
   box-sizing: border-box;
 }
@@ -11,14 +10,12 @@ html {
   font-family: 'Source Sans 3', sans-serif;
 }
 
-/*
- * Global layout stuff
- */
+
 
 body {
   color: #545149;
   background-color: #f4f1ec;
-  font-size: 24px;
+  font-size: 24px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,8 +26,31 @@ body main {
   background-color: #f4f1ec;;
 }
 
+/*
+CSS of when screen width is less than 768px (tablets)
+*/
+@media only screen and (min-width: 768px){
+body div.header-main {
+  width: 100vw;
+  display:flex;
+  justify-content: space-around;
+  padding-top:120px;
+}
 
+body header.thumbnail {
+ margin: 100px 150px 0 30px;
+}
+
+body main {
+  margin-right: 40px;
+}
+
+article.tweet-container header.tweet-header {
+  margin: 20px;
+}
+
+}
 
 /*
- * Additional CSS can be defined below or in other CSS files, as per instructions
+ * Additional CSS are defined in other CSS files, as per instructions
  */
