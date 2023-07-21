@@ -40,16 +40,15 @@ $(document).ready(function() {
 
 
   const renderTweets = function(tweets) {
-  // loops through tweets
+    //empty tweets container before render new ones so they don't end up duplicating
+    $('#tweets-container').empty();
     for (const tweet of tweets) {
-      // calls createTweetElement for each tweet
       const $eachTweet = createTweetElement(tweet);
-      // takes return value and appends it to the tweets container
       $('#tweets-container').prepend($eachTweet);
     }
   };
    
-  //render new tweets upon get request
+  
   const fetchTweets = function() {
     $.get('/tweets/')
       .then((res) => {
@@ -58,12 +57,12 @@ $(document).ready(function() {
       .catch(err => console.log(err));
   };
 
-  //Use the jQuery library to add an event listener for submit.
+
   $('#enter-tweets').on('submit', function(event) {
-    //Inside the handler function, use event.preventDefault() to prevent the default form submission behaviour.
+    
     event.preventDefault();
 
-    //Serialize the form data
+
     const serializeText =  $('#enter-tweets').serialize();
 
     //disallow form submission in the event that the tweet area is empty, or exceeds the 140 character limit
@@ -87,7 +86,7 @@ $(document).ready(function() {
     
     //clear out text in textarea before fetchTweets 
     $('#tweet-text').val('');
-    //Use the jQuery library to submit a POST request that sends the serialized data to the server
+  
     $.post('/tweets/', serializeText)
     //Verify the AJAX request
       .then(() => {
