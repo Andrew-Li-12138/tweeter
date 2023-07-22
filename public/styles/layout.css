@@ -10,8 +10,6 @@ html {
   font-family: 'Source Sans 3', sans-serif;
 }
 
-
-
 body {
   color: #545149;
   background-color: #f4f1ec;
@@ -28,7 +26,7 @@ body main {
 }
 
 /*
-CSS of when screen width is less than 1024px (tablets and other smaller mobile devices)
+CSS of when screen width is more than 1024px (desktop screen)
 */
 @media only screen and (min-width: 1024px){
 body div.header-main {
@@ -38,8 +36,12 @@ body div.header-main {
   padding-top:120px;
 }
 
+body nav {
+  background-color: #4056A1;
+}
+
 body header.thumbnail {
- margin: 100px 30px 0 30px;
+ margin: 100px 30px 50px 30px; 
 }
 
 body main {
@@ -48,6 +50,10 @@ body main {
 
 article.tweet-container header.tweet-header {
   margin: 20px;
+}
+
+article.tweet-container p.tweet-text {
+  max-width: 700px;
 }
 
 }
