@@ -16,9 +16,10 @@ $(document).ready(function() {
     counter.text(remainingCount)
     //specify what color to print out for number <0 and >0
     if (remainingCount < 0) {
-      counter.css('color', 'red');
-      } else {
-        counter.css('color', 'black')
-      }
+      counter.addClass('error');
+    } else {
+      counter.removeClass('error');
+    }
+    
   }); 
 });
