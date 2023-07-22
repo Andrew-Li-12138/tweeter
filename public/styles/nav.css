@@ -1,16 +1,18 @@
 body nav {
   height: 120px;
   width: 100vw;
-  background-color: #4056A1;
+  background-color: none;
   color: #FFFFFF;
   padding: 0 1.5em;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: fixed;
 }
 
 #logo {
   font-family: 'Bungee', cursive;
+  font-size: 39px;
 }
 
 #new-tweet-icon b {
